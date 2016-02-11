@@ -2,15 +2,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.martin.cloudmarket.MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/main_tab"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+   
+        <TabHost
+            android:id="@+id/main_tab2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+   
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+   
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.0dip"
+                    android:layout_weight="1.0"/>
+   
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.0"
+                    android:visibility="gone"/>
+   
+                <RadioGroup
+                    android:id="@+id/rg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@color/color_gs">
+   
+                    <RadioButton
+                        android:id="@+id/radio_button1"
+                        android:checked="true"
+                        android:padding="8dip"
+                        style="@style/tab_style"
+                        android:text="超市"/>
+   
+                    <RadioButton
+                        android:id="@+id/radio_button2"
+                        style="@style/tab_style"
+                        android:padding="8dip"
+                        android:text="订单"/>
+   
+                    <RadioButton
+                        android:id="@+id/radio_button3"
+                        style="@style/tab_style"
+                        android:padding="8dip"
+                        android:text="已购"/>
+   
+                    <RadioButton
+                        android:id="@+id/radio_button4"
+                        style="@style/tab_style"
+                        android:padding="8dip"
+                        android:text="我的"/>
+                </RadioGroup>
+            </LinearLayout>
+        </TabHost>
+    </LinearLayout>
+        
+    <FrameLayout 
+	    android:id="@+id/fl"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_above="@id/main_tab"
+	    ></FrameLayout>
+        
 </RelativeLayout>
