@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="#FFFFE0">
+    
+    <FrameLayout
+        android:id="@+id/main_tab_banner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:background="#0099cc">
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:text="我的"
+            android:textColor="#000000"
+            android:padding="8dip"
+            android:textSize="20dip"/>
+ 
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_setting" />
+      
+    </FrameLayout>
+    <ScrollView 
+        android:layout_width="fill_parent"  
+		android:layout_height="wrap_content"  
+		android:scrollbars="vertical"
+		android:layout_below="@id/main_tab_banner"
+	    >
+        <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        >
+		    <RelativeLayout 
+		        android:id="@+id/layout_login"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:background="#0099cc"
+		        >	        
+		        <com.martin.cloudmarket.UI.CustomImageView
+					        android:id="@+id/customimageview"
+					        android:scaleType="fitCenter"
+		    				android:layout_width="130dip" 
+		    				android:layout_height="130dip" 
+		    				android:layout_gravity="center"
+		    				android:layout_centerVertical="true" 
+					        android:layout_alignParentLeft="true"			        
+					        />	              
+		        <LinearLayout
+		             android:id="@+id/login"
+		             android:layout_width="match_parent"
+		             android:layout_height="100dp"
+		             android:orientation="vertical"
+		             android:visibility="visible"
+		             android:layout_toRightOf="@id/customimageview"
+		             android:layout_centerInParent="true"
+		             >				
+		             <TextView
+		                 android:layout_width="wrap_content"
+		                 android:layout_height="wrap_content"
+		                 android:layout_gravity="center_horizontal"
+		                 android:layout_marginTop="20dp"
+		                 android:text="欢迎来到云超市"
+		                 android:textColor="@color/white"
+		                 android:textSize="20dip" />	
+		             <Button
+		                 android:id="@+id/personal_login_button"
+		                 android:layout_width="wrap_content"
+		                 android:layout_height="wrap_content"
+		                 android:layout_gravity="center_horizontal"
+		                 android:layout_marginTop="5dp"
+		                 android:background="@android:color/transparent"
+		                 android:gravity="center"
+		                 android:text="登录/注册"
+		                 android:textColor="@color/white"
+		                 android:textSize="15dip"
+		                 android:textStyle="bold" />
+		         </LinearLayout>                      
+		    </RelativeLayout>	
+		        
+		   	<RelativeLayout 
+		   	    android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/layout_login"
+		        android:background="#ffffff"
+		        >
+		   	    <LinearLayout 
+		   	        android:layout_width="fill_parent"
+		        	android:layout_height="wrap_content"
+		        	android:orientation="horizontal"
+		        	android:paddingBottom="@dimen/activity_vertical_margin"
+				    android:paddingLeft="@dimen/activity_horizontal_margin"
+				    android:paddingRight="@dimen/activity_horizontal_margin"
+				    android:paddingTop="@dimen/activity_vertical_margin"
+		   	        >
+		   	        <LinearLayout 
+		   	            android:layout_width="0dp"
+			        	android:layout_height="wrap_content"
+			        	android:layout_weight="1"
+			        	android:orientation="vertical"
+			        	>
+			        	<ImageView
+			        	    android:layout_width="30dp"
+			        	    android:layout_height="30dp"
+			        	    android:layout_gravity="center_horizontal"
+			        	    android:src="@drawable/ic_qianbao"
+			        	    />
+		   	            <TextView 
+		   	                android:layout_width="wrap_content"
+		   	                android:layout_height="wrap_content"
+		   	                android:layout_gravity="center_horizontal"
+		   	                android:textColor="#000000"
+		   	                android:text="我的余额"
+		   	                />
+		   	        </LinearLayout>
+		   	        <View style="@style/PersonalLine" />
+		   	        <LinearLayout 
+		   	            android:layout_width="0dp"
+			        	android:layout_height="wrap_content"
+			        	android:layout_weight="1"
+			        	android:orientation="vertical"
+			        	>
+			        	<ImageView
+			        	    android:layout_width="30dp"
+			        	    android:layout_height="30dp"
+			        	    android:layout_gravity="center_horizontal"
+			        	    android:src="@drawable/ic_hongbao"
+			        	    />
+		   	            <TextView 
+		   	                android:layout_width="wrap_content"
+		   	                android:layout_height="wrap_content"
+		   	                android:layout_gravity="center_horizontal"
+		   	                android:textColor="#000000"
+		   	                android:text="我的活动"
+		   	                />
+		   	        </LinearLayout>
+		   	        <View style="@style/PersonalLine" />
+		   	        <LinearLayout 
+		   	            android:layout_width="0dp"
+			        	android:layout_height="wrap_content"
+			        	android:layout_weight="1"
+			        	android:orientation="vertical"
+			        	>
+			        	<ImageView
+			        	    android:layout_width="30dp"
+			        	    android:layout_height="30dp"
+			        	    android:layout_gravity="center_horizontal"
+			        	    android:src="@drawable/ic_jifeng"
+			        	    />
+		   	            <TextView 
+		   	                android:layout_width="wrap_content"
+		   	                android:layout_height="wrap_content"
+		 	                android:layout_gravity="center_horizontal"
+		 	                android:textColor="#000000"
+		   	                android:text="我的积分"
+		   	                />
+		   	        </LinearLayout>   	        
+		   	    </LinearLayout>	   	    
+		   	</RelativeLayout>  
+		   	 
+			<RelativeLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    >
+			    <TextView 
+			        	android:id="@+id/order_center"                       
+                        style="@style/PersonalCenterText"
+                        android:text="订单中心" />
+
+                <LinearLayout style="@style/PersonalMainLayoutStyle" 
+                   		android:background="#ffffff"
+                   		android:layout_below="@id/order_center">
+
+                        <RelativeLayout style="@style/PersonalTopStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_01"
+                                style="@style/PersonalIconStyle"
+                                android:layout_width="36dp"
+                                android:layout_height="38dp"
+                                android:src="@drawable/android_personel_quickly_order" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_01"
+                                android:text="订单速度查询" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+
+                        <View style="@style/PersonalLine" />
+
+                        <RelativeLayout style="@style/PersonalNormalStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_02"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_personel_waitpay_order" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_02"
+                                android:text="待付款订单" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+
+                        <View style="@style/PersonalLine" />
+
+                        <RelativeLayout style="@style/PersonalBottomStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_03"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_personel_all_order" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_03"
+                                android:text="全部订单" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+                    </LinearLayout> 
+			</RelativeLayout>
+    	</LinearLayout>	
+ 	</ScrollView>
+
+
+</RelativeLayout>

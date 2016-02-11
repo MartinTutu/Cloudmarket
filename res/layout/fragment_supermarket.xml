@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<FrameLayout
+        android:id="@+id/main_tab_banner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:background="#0099cc">
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:text="菜单"
+            android:textColor="#000000"
+            android:padding="8dip"
+            android:textSize="20dip"/>
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="云超市"
+            android:textColor="#000000"
+            android:padding="8dip"
+            android:textSize="20dip"/>
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+           	android:text="搜索"
+           	android:textColor="#000000"
+            android:padding="8dip"
+            android:textSize="20dip"/>
+    </FrameLayout>
+        
+    <LinearLayout
+        android:id="@+id/main_tab_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/main_tab_banner"
+        android:background="#FFFFE0" >
+    
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dip"
+            android:text="supermarket"/>
+    </LinearLayout>
+</RelativeLayout>
