@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
     
     private void showFragmentSuperMarket(){
     	//1.创建fragment对象
-    	FragmentSupermarket fs = new FragmentSupermarket();
+    	FragmentSupermarket fs = new FragmentSupermarket(MainActivity.this);
     	//2.获取fragment管理器
     	FragmentManager fm = getFragmentManager();
     	//3.开启事物

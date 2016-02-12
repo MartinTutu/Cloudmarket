@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     
@@ -38,18 +39,47 @@
             android:padding="8dip"
             android:textSize="20dip"/>
     </FrameLayout>
-        
-    <LinearLayout
-        android:id="@+id/main_tab_container"
+         
+	<FrameLayout
+        android:id="@+id/framelayout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/main_tab_banner"
-        android:background="#FFFFE0" >
-    
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="150dip"
+        android:orientation="vertical" 
+        android:layout_below="@id/main_tab_banner">
+
+        <com.finddreams.bannerview.ViewFlow
+            android:id="@+id/viewflow"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="30dip"
-            android:text="supermarket"/>
-    </LinearLayout>
+            android:layout_gravity="bottom"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:padding="3dip" >
+
+            <com.finddreams.bannerview.CircleFlowIndicator
+                android:id="@+id/viewflowindic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:padding="2dip"
+                app:activeColor="#ff0000"
+                app:activeType="fill"
+                app:circleSeparation="20dip"
+                app:inactiveColor="#ffffff"
+                app:inactiveType="fill"
+                app:radius="4dip" />
+        </FrameLayout>
+    </FrameLayout>
+    
+	<FrameLayout
+        android:id="@+id/main_notice"
+        android:layout_width="match_parent"
+        android:layout_below="@id/framelayout"
+        android:layout_height="wrap_content" >
+    </FrameLayout>
+
 </RelativeLayout>

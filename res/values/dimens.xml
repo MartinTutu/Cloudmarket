@@ -22,4 +22,8 @@
     <dimen name="index_gallery_height">120dp</dimen>
     <!-- 首页Gallery高度 -->
 
+	<dimen name="margin_12">3.0dip</dimen>
+	<dimen name="vi_margin">15.0dip</dimen>
+    <dimen name="margin_8">8dip</dimen>
+
 </resources>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:background="#FFFFE0">
+    android:background="@drawable/android_layout_bg">
     
     <FrameLayout
         android:id="@+id/main_tab_banner"
@@ -121,7 +121,7 @@
 		   	                android:text="我的余额"
 		   	                />
 		   	        </LinearLayout>
-		   	        <View style="@style/PersonalLine" />
+		   	        <View style="@style/PersonalLine1" />
 		   	        <LinearLayout 
 		   	            android:layout_width="0dp"
 			        	android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
 		   	                android:text="我的活动"
 		   	                />
 		   	        </LinearLayout>
-		   	        <View style="@style/PersonalLine" />
+		   	        <View style="@style/PersonalLine1" />
 		   	        <LinearLayout 
 		   	            android:layout_width="0dp"
 			        	android:layout_height="wrap_content"
@@ -166,18 +166,17 @@
 		   	    </LinearLayout>	   	    
 		   	</RelativeLayout>  
 		   	 
-			<RelativeLayout 
+			<LinearLayout 
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
 			    >
 			    <TextView 
 			        	android:id="@+id/order_center"                       
                         style="@style/PersonalCenterText"
                         android:text="订单中心" />
 
-                <LinearLayout style="@style/PersonalMainLayoutStyle" 
-                   		android:background="#ffffff"
-                   		android:layout_below="@id/order_center">
+                <LinearLayout style="@style/PersonalMainLayoutStyle">
 
                         <RelativeLayout style="@style/PersonalTopStyle" >
 
@@ -236,7 +235,190 @@
                                 android:src="@drawable/android_list_idex" />
                         </RelativeLayout>
                     </LinearLayout> 
-			</RelativeLayout>
+			</LinearLayout>
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    >
+			    <TextView
+                        style="@style/PersonalCenterText"
+                        android:text="账户中心" />
+
+                    <LinearLayout style="@style/PersonalMainLayoutStyle" >
+
+                        <RelativeLayout style="@style/PersonalTopStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_04"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_jd_collects" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_04"
+                                android:text="我的关注" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+
+                        <View style="@style/PersonalLine" />
+
+                        <RelativeLayout style="@style/PersonalNormalStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_05"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_jd_discuss" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_05"
+                                android:text="商品评价/晒单" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+
+                        <View style="@style/PersonalLine" />
+
+                        <RelativeLayout style="@style/PersonalBottomStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_06"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_jd_messages" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_06"
+                                android:text="消息中心" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+
+                        <View style="@style/PersonalLine" />
+
+                        <RelativeLayout style="@style/PersonalBottomStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_07"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_easy_buy" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_07"
+                                android:text="轻松购" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+
+                        <View style="@style/PersonalLine" />
+
+                        <RelativeLayout style="@style/PersonalBottomStyle" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_08"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_jd_account_safe" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_08"
+                                android:text="账户安全" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+                    </LinearLayout> 
+			    
+			</LinearLayout>
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    >
+                <TextView
+                        style="@style/PersonalCenterText"
+                        android:text="客户服务" />
+			<!--  *********************  用户中心 *************************** -->
+                    <LinearLayout style="@style/PersonalMainLayoutStyle" >
+
+                        <RelativeLayout
+                            style="@style/PersonalTopStyle"
+                            android:layout_marginBottom="10dp" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_09"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_jd_return_repair" />
+
+                            <TextView
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_09"
+                                android:text="返修/退换货" />
+
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>
+                        
+                         <View style="@style/PersonalLine" />
+                         
+                        <RelativeLayout
+                            style="@style/PersonalBottomStyle"
+                            android:layout_marginBottom="10dp" >
+
+                            <ImageView
+                                android:id="@+id/personal_icon_10"
+                                style="@style/PersonalIconStyle"
+                                android:src="@drawable/android_my_jd_online_service" />
+
+                            <TextView
+                                android:id="@+id/personal_service"
+                                style="@style/PersonalTextStyle"
+                                android:layout_toRightOf="@id/personal_icon_10"
+                                android:text="预约电话服务" />
+
+                             <ImageView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                android:layout_toRightOf="@id/personal_service"
+                                android:src="@drawable/color_shopping_new" />
+                            
+                            <ImageView
+                                style="@style/PersonalRightIconStyle"
+                                android:src="@drawable/android_list_idex" />
+                        </RelativeLayout>                       
+                       
+                    </LinearLayout> 
+                    
+               </LinearLayout>
+               
+                <Button
+      				    android:id="@+id/personal_exit"
+      				    android:layout_width="fill_parent"
+      				    android:layout_height="match_parent"
+      				    android:layout_marginBottom="14dp"
+      				    android:layout_marginLeft="25dp"
+      				    android:layout_marginRight="25dp"
+      				    android:layout_marginTop="14dp"
+      				    android:background="@drawable/android_title_bg"
+      				    android:gravity="center"
+      				    android:padding="4dp"
+      				    android:text="退出登录"
+      				    android:textColor="#fff"
+      				    android:textSize="18sp" />
+                        
     	</LinearLayout>	
  	</ScrollView>
 
