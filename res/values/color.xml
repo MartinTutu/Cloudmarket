@@ -7,5 +7,5 @@
         <color name="color_text_normal">#000000</color> 
         <color name="white">#FFFFFF</color><!--白色 --> 
         <color name="black">#000000</color> <!--黑色 -->
-        <color name="gray_bg">#fff0f0f0</color>
+        <color name="gray_bg">#FAFAFA</color>
 </resources>

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_vertical"
             android:text="菜单"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:padding="8dip"
             android:textSize="20dip"/>
     
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="云超市"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:padding="8dip"
             android:textSize="20dip"/>
     
@@ -35,51 +35,198 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
            	android:text="搜索"
-           	android:textColor="#000000"
+           	android:textColor="#ffffff"
             android:padding="8dip"
             android:textSize="20dip"/>
     </FrameLayout>
-         
-	<FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_width="fill_parent"
-        android:layout_height="150dip"
-        android:orientation="vertical" 
-        android:layout_below="@id/main_tab_banner">
-
-        <com.finddreams.bannerview.ViewFlow
-            android:id="@+id/viewflow"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
-
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/transparent"
-            android:gravity="center"
-            android:padding="3dip" >
-
-            <com.finddreams.bannerview.CircleFlowIndicator
-                android:id="@+id/viewflowindic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:padding="2dip"
-                app:activeColor="#ff0000"
-                app:activeType="fill"
-                app:circleSeparation="20dip"
-                app:inactiveColor="#ffffff"
-                app:inactiveType="fill"
-                app:radius="4dip" />
-        </FrameLayout>
-    </FrameLayout>
-    
-	<FrameLayout
-        android:id="@+id/main_notice"
-        android:layout_width="match_parent"
-        android:layout_below="@id/framelayout"
-        android:layout_height="wrap_content" >
-    </FrameLayout>
-
+    <ScrollView 
+        android:layout_width="fill_parent"  
+		android:layout_height="match_parent"  
+		android:scrollbars="vertical"
+		android:layout_below="@id/main_tab_banner"
+		android:layout_alignParentBottom="true"
+	    >
+        <RelativeLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	       >         
+			<FrameLayout
+		        android:id="@+id/framelayout"
+		        android:layout_width="fill_parent"
+		        android:layout_height="150dip"
+		        android:orientation="vertical" 
+		        >
+		
+		        <com.finddreams.bannerview.ViewFlow
+		            android:id="@+id/viewflow"
+		            android:layout_width="fill_parent"
+		            android:layout_height="fill_parent" />
+		
+		        <FrameLayout
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="bottom"
+		            android:background="@color/transparent"
+		            android:gravity="center"
+		            android:padding="3dip" >
+		
+		            <com.finddreams.bannerview.CircleFlowIndicator
+		                android:id="@+id/viewflowindic"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_gravity="center_horizontal|bottom"
+		                android:padding="2dip"
+		                app:activeColor="#ff0000"
+		                app:activeType="fill"
+		                app:circleSeparation="20dip"
+		                app:inactiveColor="#ffffff"
+		                app:inactiveType="fill"
+		                app:radius="4dip" />
+		        </FrameLayout>
+		    </FrameLayout>
+		    
+			<FrameLayout
+		        android:id="@+id/main_notice"
+		        android:layout_width="match_parent"
+		        android:layout_below="@id/framelayout"
+		        android:layout_height="wrap_content" >
+		    </FrameLayout>
+		    <LinearLayout
+		        android:id="@+id/ll_fenlei"
+		        android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:layout_below="@id/main_notice"
+			    android:background="#ffffff"
+		        >
+				<LinearLayout 
+			  	    android:layout_width="fill_parent"
+			       	android:layout_height="wrap_content"
+			       	android:orientation="horizontal"
+			       	>
+			 	    <LinearLayout 
+				        style="@style/SupermarketLinerLayoutStyle1"
+				        android:background="#fff68f"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_chao"
+				       	    />
+			 	        <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="附近超市"
+			                />
+			        </LinearLayout>
+			        <LinearLayout 
+			            style="@style/SupermarketLinerLayoutStyle1"
+			            android:background="#66cc99"
+			            >
+			            <ImageView
+			                style="@style/SupermarketImageViewStyle1"
+			                android:src="@drawable/ic_market_xian" />
+		
+			            <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="活色生鲜"
+			                />
+			        </LinearLayout>
+			        <LinearLayout 
+			            style="@style/SupermarketLinerLayoutStyle1"
+			            android:background="#99ccff"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_jin"
+				       	    />
+			            <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="进口商品"
+			                />
+			        </LinearLayout>
+		
+			        <LinearLayout 
+			            style="@style/SupermarketLinerLayoutStyle1"
+			            android:background="#ff6666"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_jia"
+				       	    />
+			            <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="家居用品"
+			                />
+			        </LinearLayout>   	        
+			    </LinearLayout>
+			    <LinearLayout 
+			  	    android:layout_width="fill_parent"
+			       	android:layout_height="wrap_content"
+			       	android:orientation="horizontal"
+			       	>
+			 	    <LinearLayout 
+				        style="@style/SupermarketLinerLayoutStyle1"
+				        android:background="#cc3366"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_liang"
+				       	    />
+			 	        <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="粮油副食"
+			                />
+			        </LinearLayout>
+			        <LinearLayout 
+			            style="@style/SupermarketLinerLayoutStyle1"
+			            android:background="#0099cc"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_mei"
+				       	    />
+			            <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="美容洗护"
+			                />
+			        </LinearLayout>
+			        <LinearLayout 
+			            style="@style/SupermarketLinerLayoutStyle1"
+			            android:background="#cccc33"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_mu"
+				       	    />
+			            <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="母婴玩具"
+			                />
+			        </LinearLayout>
+		
+			        <LinearLayout 
+			            style="@style/SupermarketLinerLayoutStyle1"
+			            android:background="#66cc66"
+			            >
+				       	<ImageView
+				       	    style="@style/SupermarketImageViewStyle1" 
+				       	    android:src="@drawable/ic_market_xin"
+				       	    />
+			            <TextView 
+			                style="@style/SupermarketTextViewStyle1"
+			                android:text="新品试用"
+			                />
+			        </LinearLayout>   	        
+			    </LinearLayout>
+		    </LinearLayout>	
+		    <ListView
+		        android:id="@+id/lv"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@id/ll_fenlei" 
+		        android:background="@color/gray_bg"
+		        android:divider="#999999"  
+			    android:dividerHeight="1px"  
+		        />
+		</RelativeLayout>	
+ 	</ScrollView>
 </RelativeLayout>
