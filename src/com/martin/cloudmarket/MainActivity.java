@@ -3,6 +3,7 @@ package com.martin.cloudmarket;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
@@ -108,4 +109,17 @@ public class MainActivity extends Activity {
     	//5.Ã·Ωª
     	ft.commit();
     }
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode){
+         case 1:
+         	break;
+         case 2:
+         	break;
+      }
+	}
+    
 }

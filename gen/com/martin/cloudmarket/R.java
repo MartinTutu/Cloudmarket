@@ -197,24 +197,37 @@ containing a value of this type.
         public static final int progress_bar_states=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a002f;
+        public static final int action_settings=0x7f0a003c;
         public static final int baseweb_webview=0x7f0a0002;
         public static final int customimageview=0x7f0a000d;
         public static final int fill=0x7f0a0000;
         public static final int fl=0x7f0a000a;
+        public static final int fl_siv=0x7f0a0031;
         public static final int framelayout=0x7f0a001d;
-        public static final int homepage_notice_ll=0x7f0a0023;
-        public static final int homepage_notice_vf=0x7f0a0024;
+        public static final int goods_fl_siv=0x7f0a0023;
+        public static final int goods_linerlayout1=0x7f0a0029;
+        public static final int goods_relativelayout1=0x7f0a0027;
+        public static final int goods_siv=0x7f0a0024;
+        public static final int goods_tv_detail=0x7f0a0026;
+        public static final int goods_tv_jiage=0x7f0a0028;
+        public static final int goods_tv_number=0x7f0a002c;
+        public static final int goods_tv_title=0x7f0a0025;
+        public static final int goods_tv_type=0x7f0a002b;
+        public static final int goods_tv_xiaoliang=0x7f0a002a;
+        public static final int homepage_notice_ll=0x7f0a002d;
+        public static final int homepage_notice_vf=0x7f0a002e;
         public static final int layout_login=0x7f0a000c;
-        public static final int linerlayout1=0x7f0a0027;
+        public static final int linerlayout1=0x7f0a0034;
         public static final int ll_fenlei=0x7f0a0021;
         public static final int login=0x7f0a000e;
         public static final int lv=0x7f0a0022;
+        public static final int lv_market_goods_item=0x7f0a0030;
         public static final int main_notice=0x7f0a0020;
         public static final int main_tab=0x7f0a0003;
         public static final int main_tab2=0x7f0a0004;
         public static final int main_tab_banner=0x7f0a000b;
-        public static final int notice_tv=0x7f0a002e;
+        public static final int market_title=0x7f0a002f;
+        public static final int notice_tv=0x7f0a003b;
         public static final int order_center=0x7f0a0010;
         public static final int personal_exit=0x7f0a001c;
         public static final int personal_icon_01=0x7f0a0011;
@@ -233,16 +246,16 @@ containing a value of this type.
         public static final int radio_button2=0x7f0a0007;
         public static final int radio_button3=0x7f0a0008;
         public static final int radio_button4=0x7f0a0009;
-        public static final int relativelayout1=0x7f0a002b;
+        public static final int relativelayout1=0x7f0a0038;
         public static final int rg=0x7f0a0005;
-        public static final int siv=0x7f0a0025;
+        public static final int siv=0x7f0a0032;
         public static final int stroke=0x7f0a0001;
-        public static final int tv_distance=0x7f0a002d;
-        public static final int tv_mark=0x7f0a0028;
-        public static final int tv_qisong=0x7f0a002c;
-        public static final int tv_title=0x7f0a0026;
-        public static final int tv_trading_area=0x7f0a002a;
-        public static final int tv_type=0x7f0a0029;
+        public static final int tv_distance=0x7f0a003a;
+        public static final int tv_mark=0x7f0a0035;
+        public static final int tv_qisong=0x7f0a0039;
+        public static final int tv_title=0x7f0a0033;
+        public static final int tv_trading_area=0x7f0a0037;
+        public static final int tv_type=0x7f0a0036;
         public static final int viewflow=0x7f0a001e;
         public static final int viewflowindic=0x7f0a001f;
     }
@@ -253,9 +266,12 @@ containing a value of this type.
         public static final int fragment_order=0x7f030003;
         public static final int fragment_shop=0x7f030004;
         public static final int fragment_supermarket=0x7f030005;
-        public static final int layout_notice=0x7f030006;
-        public static final int market_item=0x7f030007;
-        public static final int notice_item=0x7f030008;
+        public static final int goods_dialog=0x7f030006;
+        public static final int goods_item=0x7f030007;
+        public static final int layout_notice=0x7f030008;
+        public static final int market_detail=0x7f030009;
+        public static final int market_item=0x7f03000a;
+        public static final int notice_item=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f090000;

@@ -17,7 +17,8 @@ public class ContactImage implements SmartImage {
         this.contactId = contactId;
     }
 
-    public Bitmap getBitmap(Context context) {
+    @Override
+	public Bitmap getBitmap(Context context) {
         Bitmap bitmap = null;
         ContentResolver contentResolver = context.getContentResolver();
 

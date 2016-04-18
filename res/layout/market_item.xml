@@ -5,16 +5,24 @@
     android:background="@color/gray_bg"
     >
 
+    <FrameLayout
+        android:id="@+id/fl_siv"
+        android:layout_margin="10dp" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#CDCDC1"
+        android:padding="1dp"
+        >
+	    <com.loopj.android.image.SmartImageView 
+	        android:id="@+id/siv"
+	        android:layout_width="90dp"
+	        android:layout_height="70dp"
+	        android:background="#FFFFFF"
+	        android:src="@drawable/ic_launcher"
+	        android:layout_centerVertical="true"
+	        />        
+    </FrameLayout>
 
-    <com.loopj.android.image.SmartImageView 
-        android:id="@+id/siv"
-        android:layout_width="90dp"
-        android:layout_height="70dp"
-        android:background="#FFFFFF"
-        android:src="@drawable/ic_launcher"
-        android:layout_centerVertical="true"
-        android:layout_margin="10dp"
-        />
     <TextView
         android:id="@+id/tv_title" 
         android:layout_width="match_parent"
@@ -22,7 +30,7 @@
         android:text="超市标题"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:layout_toRightOf="@id/siv"
+        android:layout_toRightOf="@id/fl_siv"
         android:paddingTop="8dp"
         android:singleLine="true"
         />
@@ -31,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
-        android:layout_toRightOf="@id/siv"
+        android:layout_toRightOf="@id/fl_siv"
         android:paddingTop="3dp"
         android:paddingLeft="10dp"
         >
@@ -41,7 +49,7 @@
 	        android:layout_height="wrap_content"
 	        android:text="评分"
 	        android:textColor="#ff9933"
-	        android:textSize="10sp"
+	        android:textSize="12sp"
 	        android:paddingRight="5dp"
 	        />
         <View style="@style/PersonalLine1" />
@@ -50,7 +58,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="类型"
-	        android:textSize="10sp"
+	        android:textSize="12sp"
 	        android:textColor="#006699"
 	        android:paddingLeft="5dp"
 	        />
@@ -60,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linerlayout1"
-        android:layout_toRightOf="@id/siv"
+        android:layout_toRightOf="@id/fl_siv"
         android:textColor="#8A8A8A"
         android:paddingTop="3dp"
         android:paddingLeft="10dp"
@@ -71,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_trading_area"
-        android:layout_toRightOf="@id/siv"
+        android:layout_toRightOf="@id/fl_siv"
         android:gravity="bottom"
         android:paddingTop="3dp"
         >
@@ -89,7 +97,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="1.0km"
-	        android:textSize="10sp"
+	        android:textSize="12sp"
 	        android:textColor="#66cc66"
 	        android:gravity="right"
 	        android:layout_toRightOf="@id/tv_qisong"

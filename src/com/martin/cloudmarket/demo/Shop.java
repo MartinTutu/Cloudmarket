@@ -1,6 +1,7 @@
 package com.martin.cloudmarket.demo;
 
 public class Shop {
+	private String id;
 	private String title;
 	private String type;
 	private String mark;
@@ -8,6 +9,12 @@ public class Shop {
 	private String qisong;
 	private String distance;
 	private String logoURL;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -52,8 +59,8 @@ public class Shop {
 	}
 	@Override
 	public String toString() {
-		return "Shop [title=" + title + ", type=" + type + ", mark=" + mark + ", tradingarea=" + tradingarea
-				+ ", qisong=" + qisong + ", distance=" + distance + ", logoURL=" + logoURL + "]";
+		return "Shop [id=" + id + ", title=" + title + ", type=" + type + ", mark=" + mark + ", tradingarea="
+				+ tradingarea + ", qisong=" + qisong + ", distance=" + distance + ", logoURL=" + logoURL + "]";
 	}
 	
 }

@@ -17,7 +17,7 @@ import com.finddreams.adbanner.ImagePagerAdapter;
 import com.finddreams.bannerview.CircleFlowIndicator;
 import com.finddreams.bannerview.ViewFlow;
 import com.loopj.android.image.SmartImageView;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -35,8 +35,10 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+@SuppressLint("HandlerLeak")
 public class FragmentSupermarket extends Fragment {
 	
 	private ViewFlow mViewFlow;
@@ -54,6 +56,7 @@ public class FragmentSupermarket extends Fragment {
 	
 	private List<Shop> shoplist;
 	Handler handler = new Handler(){
+		@Override
 		public void handleMessage(android.os.Message msg) {
 			ListView lv = (ListView) v.findViewById(R.id.lv);
 			lv.setAdapter(new MyAdapter());
@@ -82,18 +85,18 @@ public class FragmentSupermarket extends Fragment {
 		imageUrlList
 				.add("http://a.dangdang.com/api/data/cpx/img/39410001/1");
 		imageUrlList
-				.add("http://img20.360buyimg.com/da/jfs/t1861/79/1501878724/110199/16f1153/56b63030N69700914.jpg");
+				.add("http://a.dangdang.com/api/data/cpx/img/39440001/1");
 		imageUrlList
-				.add("http://d9.yihaodianimg.com/N05/M06/FE/4F/CgQI0lazEwyACCtJAAItVIjZgYA03700.jpg");
+				.add("http://a.dangdang.com/api/data/cpx/img/39290001/1");
 		imageUrlList
 				.add("http://img11.360buyimg.com/da/jfs/t1942/111/2068438799/98442/d8ae93ff/56b6314dN2ae6ef80.jpg");
 
+	    linkUrlArray
+				.add("http://t.dangdang.com/201604_zht");
 		linkUrlArray
-				.add("http://blog.csdn.net/finddreams/article/details/44301359");
+				.add("http://fashion.dangdang.com/20160331_xswc");
 		linkUrlArray
-				.add("http://blog.csdn.net/finddreams/article/details/43486527");
-		linkUrlArray
-				.add("http://blog.csdn.net/finddreams/article/details/44648121");
+				.add("http://shop.dangdang.com/12111");
 		linkUrlArray
 				.add("http://blog.csdn.net/finddreams/article/details/44619589");
 		titleList.add("天天特价，猴年大狂欢");
@@ -123,7 +126,7 @@ public class FragmentSupermarket extends Fragment {
 			
 			@Override
 			public void run() {
-				((Activity)context).runOnUiThread(new Runnable() {
+				context.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						try{
@@ -198,7 +201,7 @@ public class FragmentSupermarket extends Fragment {
 		Thread t = new Thread(){
 			@Override
 			public void run() {
-				String path = "http://couldmarket-10021250.file.myqcloud.com/shoplist/shops.xml";
+				String path = "http://couldmarket-10021250.file.myqcloud.com/shops.xml";
 				try {
 					URL url = new URL(path);
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -237,6 +240,9 @@ public class FragmentSupermarket extends Fragment {
 						shoplist = new ArrayList<Shop>();
 					}else if("shop".equals(xp.getName())){
 						shop = new Shop();
+					}else if("id".equals(xp.getName())){
+						String id = xp.nextText();
+						shop.setId(id);
 					}else if("title".equals(xp.getName())){
 						String title = xp.nextText();
 						shop.setTitle(title);
@@ -295,7 +301,7 @@ public class FragmentSupermarket extends Fragment {
 		//返回一个View对象，会作为ListView的一个条目显示在界面上
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			Shop shop = shoplist.get(position);
+			final Shop shop = shoplist.get(position);
 			
 			View v = null;
 			ViewHolder mHolder = null;
@@ -329,6 +335,22 @@ public class FragmentSupermarket extends Fragment {
 			mHolder.tv_distance.setText(shop.getDistance());
 			
 			mHolder.siv.setImageUrl(shop.getLogoURL());
+			
+			//设置监听
+			v.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent();
+					intent.setClass(context, MarketActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putString("ID", shop.getId());
+					bundle.putString("Title", shop.getTitle());
+					intent.putExtras(bundle);
+					startActivityForResult(intent, 1);
+					Toast.makeText(context,"点了"+shop.getId(),Toast.LENGTH_LONG).show();
+				}
+			});
 			return v;
 		}
 		

@@ -20,7 +20,8 @@ public class WebImage implements SmartImage {
         this.url = url;
     }
 
-    public Bitmap getBitmap(Context context) {
+    @Override
+	public Bitmap getBitmap(Context context) {
         // Don't leak context
         if(webImageCache == null) {
             webImageCache = new WebImageCache(context);
