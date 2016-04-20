@@ -11,16 +11,21 @@ import java.util.TimerTask;
 import org.xmlpull.v1.XmlPullParser;
 
 import com.martin.cloudmarket.R;
+import com.martin.cloudmarket.database.MyOpenHelper;
 import com.martin.cloudmarket.demo.Shop;
 import com.finddreams.adbanner.BaseWebActivity;
 import com.finddreams.adbanner.ImagePagerAdapter;
 import com.finddreams.bannerview.CircleFlowIndicator;
 import com.finddreams.bannerview.ViewFlow;
 import com.loopj.android.image.SmartImageView;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -53,6 +58,9 @@ public class FragmentSupermarket extends Fragment {
 	
 	private View v;
 	private Activity context = null;
+	private MyOpenHelper oh;
+	private String  myDB = "couldmarket.db";
+	private SQLiteDatabase db;
 	
 	private List<Shop> shoplist;
 	Handler handler = new Handler(){
@@ -269,6 +277,42 @@ public class FragmentSupermarket extends Fragment {
 					break;
 				case XmlPullParser.END_TAG:
 					if("shop".equals(xp.getName())){
+						
+						oh = new MyOpenHelper(context, myDB, null, 1);
+						//如果数据库不存在，先创建，再打开，如果存在，就直接打开
+						db = oh.getWritableDatabase();
+						
+						int flag = 0;
+						//查询获得游标   
+						Cursor cursor = db.query ("shop",null,null,null,null,null,null);   			  
+						//判断游标是否为空   
+						if(cursor.moveToFirst()){   
+							//遍历游标   
+							for(int i=0;i<cursor.getCount();i++){   
+								cursor.moveToPosition(i);;   
+								String s = cursor.getString(1);
+								if(shop.getId().equals(s)){
+									System.out.println(s);
+									flag = 1;
+									break;
+								}   
+							}   
+						}   
+						if(flag == 0){
+							ContentValues values = new ContentValues();
+							values.put("id", shop.getId());
+							values.put("title", shop.getTitle());
+							values.put("type", shop.getType());
+							values.put("mark", shop.getMark());
+							values.put("tradingarea", shop.getTradingarea());
+							values.put("qisong", shop.getQisong());
+							values.put("distance", shop.getDistance());
+							values.put("logoURL", shop.getLogoURL());
+							//返回值-1，插入失败
+							long l = db.insert("shop", null, values);
+							System.out.println(l);
+						}
+						db.close();
 						shoplist.add(shop);
 					}
 					break;
@@ -335,7 +379,7 @@ public class FragmentSupermarket extends Fragment {
 			mHolder.tv_distance.setText(shop.getDistance());
 			
 			mHolder.siv.setImageUrl(shop.getLogoURL());
-			
+						
 			//设置监听
 			v.setOnClickListener(new OnClickListener() {
 				

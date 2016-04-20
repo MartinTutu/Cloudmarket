@@ -1,19 +1,21 @@
 package com.martin.cloudmarket;
 
+import com.martin.cloudmarket.database.MyOpenHelper;
+
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
 public class MainActivity extends Activity {
 	
 	private RadioGroup rg = null;
-//	private RadioButton rb1 = null;
-//	private RadioButton rb2 = null;
-//	private RadioButton rb3 = null;
-//	private RadioButton rb4 = null;
+//	private MyOpenHelper oh;
+//	private String  myDB = "couldmarket.db";
+//	private SQLiteDatabase db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		//通过控件的ID来得到代表控件的对象 
 		rg = (RadioGroup) findViewById(R.id.rg);
-//		rb1 = (RadioButton) findViewById(R.id.radio_button1);
-//		rb2 = (RadioButton) findViewById(R.id.radio_button2);
-//		rb3 = (RadioButton) findViewById(R.id.radio_button3);
-//		rb4 = (RadioButton) findViewById(R.id.radio_button4);		
 		//为RadioGroup设置监听器，需要注意的是，这里的监听器和Button控件的监听器有所不同
 		rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 			
@@ -56,6 +54,11 @@ public class MainActivity extends Activity {
 		});
 		//显示主SuperMarket的Fragment
 		showFragmentSuperMarket();
+		
+//		oh = new MyOpenHelper(this, myDB, null, 1);
+//		//如果数据库不存在，先创建，再打开，如果存在，就直接打开
+//		db = oh.getWritableDatabase();
+//		db.close();
 	}
     
     private void showFragmentSuperMarket(){

@@ -3,26 +3,37 @@ package com.martin.cloudmarket;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import com.loopj.android.image.SmartImageView;
+import com.martin.cloudmarket.database.MyOpenHelper;
 import com.martin.cloudmarket.demo.Goods;
+import com.martin.cloudmarket.demo.Order;
+import com.martin.cloudmarket.demo.OrderItem;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,11 +45,20 @@ public class MarketActivity extends Activity {
 	TextView tv_title = null;
 	
 	private Bundle bundle;
-	private String shop_id="tt";
+	private String shop_id;
 	private String title;
+	private MyOpenHelper oh;
+	private String  myDB = "couldmarket.db";
+	private SQLiteDatabase db;
+	private String  dbTableName;
 	private Activity context=this;
 	
-	List<Goods> goodslist;
+	private List<Goods> goodslist;
+	private List<OrderItem> orderlist = new ArrayList<OrderItem>();
+	private Order myorder;
+	private int   myorderID = 0;
+	private int   myorderFlag = 0;
+	private String orderName;
 	
 	Handler handler = new Handler(){
 		@Override
@@ -62,7 +82,70 @@ public class MarketActivity extends Activity {
 		title = bundle.getString("Title");
 		tv_title.setText(title);
 		
+		dbTableName = "shop_"+shop_id;
+		
+		oh = new MyOpenHelper(context, myDB, null, 1);
+		//如果数据库不存在，先创建，再打开，如果存在，就直接打开
+		db = oh.getWritableDatabase();
+		Cursor cursor = db.query ("ordertable",null,null,null,null,null,null);   			  
+		//判断游标是否为空   
+		myorderID = 0;
+		if(cursor.moveToFirst()){   
+			//遍历游标   
+			for(int i=0;i<cursor.getCount();i++){   
+				cursor.moveToPosition(i);;   
+				int id = cursor.getInt(0);
+				if(id > myorderID){
+					myorderID = id;
+				}   
+			}   
+		}
+		myorderID++;
+
+        db.close();
+        
 		getNewsInfo();
+		
+	}
+	
+	@SuppressLint("SimpleDateFormat")
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if(myorderFlag == 1){
+			SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+			String date = sDateFormat.format(new java.util.Date()); 
+			
+			myorder = new Order();
+			myorder.setID(myorderID);
+			myorder.setDate(date);
+			myorder.setAddress("黑龙江省哈尔滨市南岗区黑龙江大学C区");
+			myorder.setTel("13888888888");
+			myorder.setOrderList(orderlist);
+			myorder.setPaycondition(0);
+			float price = 0;
+			for(OrderItem oi : orderlist){
+				price += oi.getGoodNum()*oi.getGoodPrice();				
+			}
+			myorder.setPrice(price);
+			
+			oh = new MyOpenHelper(context, myDB, null, 1);
+			//如果数据库不存在，先创建，再打开，如果存在，就直接打开
+			db = oh.getWritableDatabase();
+				
+			ContentValues values = new ContentValues();
+			values.put("id", myorder.getID());
+			values.put("date", myorder.getDate());
+			values.put("address", myorder.getAddress());
+			values.put("tel", myorder.getTel());
+			values.put("paycondition", myorder.getPaycondition());
+			values.put("price", myorder.getPrice() + "");
+			long l = db.insert("ordertable", null, values);
+			System.out.println(l);
+			
+			db.close();
+		}
 	}
 	
 	class MyAdapter extends BaseAdapter{
@@ -121,9 +204,7 @@ public class MarketActivity extends Activity {
 					LayoutInflater inflater = LayoutInflater.from(context);	
 					View dialogView = inflater.inflate(R.layout.goods_dialog, null);
 					//创建对话框创建器
-					AlertDialog.Builder builder = new Builder(context);
-					//设置图标
-					builder.setIcon(android.R.drawable.ic_dialog_info);
+					AlertDialog.Builder builder = new AlertDialog.Builder(context,AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
 					//设置标题
 					builder.setTitle("是否要将"+good.getTitle()+"加入购物车");
 					//Sets a custom view to be the contents of the alert dialog. 
@@ -133,19 +214,108 @@ public class MarketActivity extends Activity {
 					TextView goods_tv_detail = (TextView) dialogView.findViewById(R.id.goods_tv_detail);
 					TextView goods_tv_jiage = (TextView) dialogView.findViewById(R.id.goods_tv_jiage);
 					SmartImageView goods_siv = (SmartImageView) dialogView.findViewById(R.id.goods_siv);
-					
+					Button   buy_sub = (Button) dialogView.findViewById(R.id.buy_sub);
+					Button   buy_add = (Button) dialogView.findViewById(R.id.buy_add);
+					final EditText buy_goods_num = (EditText) dialogView.findViewById(R.id.buy_goods_num);
 					goods_tv_title.setText(good.getTitle());
-					goods_tv_detail.setText("商品描述："+good.getDetail());
-					goods_tv_jiage.setText("售价："+good.getJiage());
+					goods_tv_detail.setText("商品描述： "+good.getDetail());
+					goods_tv_jiage.setText("售价:"+good.getJiage());
 					goods_siv.setImageUrl(good.getGoodsURL());
+					
+					buy_sub.setOnClickListener(new OnClickListener() {						
+						@Override
+						public void onClick(View v) {
+							int num = Integer.parseInt(buy_goods_num.getText()+"");
+							num--;
+							if(num>=0)
+								buy_goods_num.setText(num+"");
+							else
+								Toast.makeText(context, "商品数量不能小于0", 0).show();
+						}
+					});
+					buy_add.setOnClickListener(new OnClickListener() {						
+						@Override
+						public void onClick(View v) {
+							int num = Integer.parseInt(buy_goods_num.getText()+"");
+							num++;
+							if(num<=Integer.parseInt(good.getNumber()))
+								buy_goods_num.setText(num+"");
+							else 
+								Toast.makeText(context, "超出了该商品的剩余量", 0).show();
+						}
+					});
 					
 					//设置确定按钮
 					builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 						
-						@SuppressLint("ShowToast")
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							Toast.makeText(context, "你点击了确定", 0).show();
+							int num = Integer.parseInt(buy_goods_num.getText()+"");
+							if(num>0){
+								OrderItem orderItem = new OrderItem();
+								orderItem.setShopName(title);
+								orderItem.setShopID(shop_id);
+								orderItem.setGoodName(good.getTitle());
+								orderItem.setGoodID(good.getId());
+								orderItem.setGoodNum(num);
+								orderItem.setGoodPrice(good.getJiage().substring(1));
+								
+								orderName = "order_"+myorderID;
+								
+								oh = new MyOpenHelper(context, myDB, null, 1);
+								//如果数据库不存在，先创建，再打开，如果存在，就直接打开
+								db = oh.getWritableDatabase();
+								
+								String sql;
+								sql = "create table if not exists "+orderName+"(_id integer primary key autoincrement, shopName char(50), shopID char(10), goodName char(50)"
+																			  + ", goodID char(10), goodNum integer(10), goodPrice char(20))";
+								db.execSQL(sql);
+								
+								int flag = 0;
+								int goodnum = 0;
+								int position = 0;
+								//查询获得游标   
+								Cursor cursor = db.query (orderName,null,null,null,null,null,null);   			  
+								//判断游标是否为空   
+								if(cursor.moveToFirst()){   
+									//遍历游标   
+									for(int i=0;i<cursor.getCount();i++){   
+										cursor.moveToPosition(i);;   
+										String s = cursor.getString(4);
+										//System.out.println(s);
+										if(good.getId().equals(s)){
+											goodnum = cursor.getInt(5);
+											position = i;
+											System.out.println(s);
+											flag = 1;
+											break;
+										}   
+									}   
+								}   
+								ContentValues values = new ContentValues();
+								values.put("shopName", orderItem.getShopName());
+								values.put("shopID", orderItem.getShopID());
+								values.put("goodName", orderItem.getGoodName());
+								values.put("goodID", orderItem.getGoodID());
+								values.put("goodNum", orderItem.getGoodNum()+goodnum);
+								values.put("goodPrice", orderItem.getGoodPrice()+"");
+								if(flag == 0){									
+									//返回值-1，插入失败
+									long l = db.insert(orderName, null, values);
+									orderlist.add(orderItem);				
+									System.out.println(l);
+								}else if(flag == 1){
+									long l = db.update(orderName, values, "goodID = ?", new String[]{orderItem.getGoodID()});
+									OrderItem mm = orderlist.get(position);
+									mm.setGoodNum(mm.getGoodNum()+goodnum);
+									orderlist.set(position, mm);
+									System.out.println(l);
+								}
+								myorderFlag = 1;
+								db.close();
+							
+							}
+							//Toast.makeText(context, "你点击了确定", 0).show();
 						}
 					});
 					//设置取消按钮
@@ -158,6 +328,12 @@ public class MarketActivity extends Activity {
 					});
 					//显示对话框
 					AlertDialog alertDialog = builder.create();
+					//透明
+					Window window = alertDialog.getWindow(); 
+					WindowManager.LayoutParams lp = window.getAttributes();
+					lp.alpha = 0.9f;
+					window.setAttributes(lp);
+					
 					alertDialog.show();
 				}
 			});
@@ -262,6 +438,49 @@ public class MarketActivity extends Activity {
 					break;
 				case XmlPullParser.END_TAG:
 					if("good".equals(xp.getName())){
+						oh = new MyOpenHelper(context, myDB, null, 1);
+						//如果数据库不存在，先创建，再打开，如果存在，就直接打开
+						db = oh.getWritableDatabase();
+						
+						String sql;
+						sql = "create table if not exists "+dbTableName+"(_id integer primary key autoincrement, id char(10), title char(50), type char(20), xiaoliang char(20)"
+								              + ", number char(20), detail char(200) , jiage char(20), goodURL char(200))";
+						db.execSQL(sql);
+						
+						int flag = 0;
+						//查询获得游标   
+						Cursor cursor = db.query (dbTableName,null,null,null,null,null,null);   			  
+						//判断游标是否为空   
+						if(cursor.moveToFirst()){   
+							//遍历游标   
+							for(int i=0;i<cursor.getCount();i++){   
+								cursor.moveToPosition(i);;   
+								String s = cursor.getString(1);
+								if(good.getId().equals(s)){
+									System.out.println(s);
+									flag = 1;
+									break;
+								}   
+							}   
+						}   
+						if(flag == 0){
+							ContentValues values = new ContentValues();
+							values.put("id", good.getId());
+							values.put("title", good.getTitle());
+							values.put("type", good.getType());
+							values.put("xiaoliang", good.getXiaoliang());
+							values.put("number", good.getNumber());
+							values.put("detail", good.getDetail());
+							values.put("jiage", good.getJiage());
+							values.put("goodURL", good.getGoodsURL());
+							//返回值-1，插入失败
+							long l = db.insert(dbTableName, null, values);
+							System.out.println(l);
+						}
+//						sql = "select max(_id) as md from ordertable";
+//						Cursor cr = db.rawQuery(sql, null);
+//						myorderID = cr.getInt(cr.getColumnIndex("md")) + 1;
+						db.close();
 						goodslist.add(good);
 					}
 					break;
@@ -281,7 +500,7 @@ public class MarketActivity extends Activity {
 			e.printStackTrace();
 		}
 
-	}
+	}	
 	
 	 public void setListViewHeightBasedOnChildren(ListView listView) {   
 	        // 获取ListView对应的Adapter   
