@@ -1,7 +1,6 @@
 package com.martin.cloudmarket.demo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -58,7 +57,10 @@ public class Order {
 	public void setPrice(float price) {
 		float  b   =  ((float)(Math.round(price*100)))/100;
 		this.price = b;
-		System.out.println(b);
+		//System.out.println(b);
+	}
+	public void setPrice(String price){
+		this.price = Float.parseFloat(price);
 	}
 	@Override
 	public String toString() {

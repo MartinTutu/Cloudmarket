@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:background="@color/gray_bg">
+    android:background="#EAEAEA">
     
     <FrameLayout
         android:id="@+id/main_tab_banner"
@@ -39,5 +39,28 @@
             android:padding="8dip"
             android:textSize="20dip"/>
     </FrameLayout>
+    <ScrollView 
+        android:layout_width="fill_parent"  
+		android:layout_height="match_parent"  
+		android:scrollbars="vertical"
+		android:layout_below="@id/main_tab_banner"
+		android:layout_alignParentBottom="true"
+	    >
+        <RelativeLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        android:padding="3dp"
+	       >         
+			<ListView
+		        android:id="@+id/lv_order_item"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@color/gray_bg"
+		        android:divider="#EAEAEA"  
+			    android:dividerHeight="10px"  
+		        />
+		</RelativeLayout>	
+ 	</ScrollView>
 
 </RelativeLayout>

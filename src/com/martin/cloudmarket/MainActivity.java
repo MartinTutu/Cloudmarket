@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
     
     private void showFragmentOrder(){
     	//1.创建fragment对象
-    	FragmentOrder fo = new FragmentOrder();
+    	FragmentOrder fo = new FragmentOrder(MainActivity.this);
     	//2.获取fragment管理器
     	FragmentManager fm = getFragmentManager();
     	//3.开启事物
