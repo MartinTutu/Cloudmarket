@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc" >
+    
+    <TextView  
+        android:id="@+id/login"  
+        android:layout_width="match_parent"  
+        android:layout_height="wrap_content"  
+        android:layout_margin="30dp"  
+        android:gravity="center_horizontal"  
+        android:textColor="#FFFFFF"  
+        android:textSize="35dp"  
+        android:text="云超市" />  
+    <TextView   
+        android:id="@+id/txtname"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/login"  
+        android:layout_marginRight="5dp" 
+        android:padding="6dp" 
+        android:layout_marginBottom="30dp" 
+        android:textColor="#FFFFFF"  
+        android:textSize="28dp"  
+        android:text="帐号:"/>  
+    <EditText   
+        android:id="@+id/edname"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_marginBottom="30dp"  
+        android:layout_below="@id/login"  
+        android:layout_toRightOf="@id/txtname"  
+        android:layout_alignParentRight="true"  
+        android:hint="请输入用户帐号"/>  
+    <TextView   
+        android:id="@+id/txtpassword"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/txtname"  
+        android:padding="6dp"
+        android:layout_marginRight="5dp"  
+        android:textSize="28dp"
+        android:textColor="#FFFFFF"   
+        android:text="密码:"/>  
+    <EditText   
+        android:id="@+id/edpassword"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_below="@id/edname"  
+        android:layout_toRightOf="@id/txtpassword"  
+        android:layout_alignParentRight="true"  
+        android:inputType="textPassword"  
+        android:hint="请输入用户密码"/>  
+    <LinearLayout   
+        android:layout_below="@id/edpassword"  
+        android:orientation="horizontal"  
+        android:layout_width="match_parent"  
+        android:layout_height="wrap_content"  
+        android:layout_marginTop="30dp"  
+        android:gravity="center_horizontal" >  
+    <Button   
+        android:id="@+id/btregister"  
+        android:layout_height="wrap_content"  
+        android:layout_width="wrap_content"  
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginRight="20dp"
+        android:background="#90EE90"
+        android:textColor="#FFFAF0"
+        android:text="用户注册"/>  
+    <Button   
+        android:id="@+id/btlogin"  
+        android:layout_height="wrap_content"  
+        android:layout_width="wrap_content" 
+        android:background="#90EE90" 
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textColor="#FFFAF0"
+        android:text="用户登录"/>  
+    </LinearLayout>  
+
+</RelativeLayout>

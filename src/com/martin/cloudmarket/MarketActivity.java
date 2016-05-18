@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ import android.widget.Toast;
 public class MarketActivity extends Activity {
 	
 	TextView tv_title = null;
+	Button   return_market = null;
 	
 	private Bundle bundle;
 	private String shop_id;
@@ -60,6 +62,8 @@ public class MarketActivity extends Activity {
 	private int   myorderFlag = 0;
 	private String orderName;
 	
+	Intent intent;
+	
 	Handler handler = new Handler(){
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -76,8 +80,10 @@ public class MarketActivity extends Activity {
 		setContentView(R.layout.market_detail);
 		
 		tv_title = (TextView) findViewById(R.id.market_title);
+		return_market = (Button) findViewById(R.id.return_market);
 		
-		bundle = this.getIntent().getExtras();
+		intent = this.getIntent();
+		bundle = intent.getExtras();
 		shop_id = bundle.getString("ID");
 		title = bundle.getString("Title");
 		tv_title.setText(title);
@@ -106,13 +112,18 @@ public class MarketActivity extends Activity {
         
 		getNewsInfo();
 		
+		return_market.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// 设置MarketActivity的结果码(resultCode)，并设置在当前结束后退回去的Activity
+				MarketActivity.this.setResult(1, intent);
+				MarketActivity.this.finish();
+			}
+		});
 	}
 	
-	@SuppressLint("SimpleDateFormat")
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
+	public void close(){
 		if(myorderFlag == 1){
 			SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 			String date = sDateFormat.format(new java.util.Date()); 
@@ -145,7 +156,15 @@ public class MarketActivity extends Activity {
 			System.out.println(l);
 			
 			db.close();
-		}
+			
+		}	
+		
+	}
+	
+	@Override
+	protected void onDestroy() {
+		close();
+		super.onDestroy();		
 	}
 	
 	class MyAdapter extends BaseAdapter{

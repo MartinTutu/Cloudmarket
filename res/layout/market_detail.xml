@@ -11,11 +11,13 @@
         android:paddingRight="10dip"
         android:background="#0099cc">
     
-        <TextView
+        <Button
+            android:id="@+id/return_market"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_vertical"
             android:text="返回"
+            android:background="#0099cc"
             android:textColor="#ffffff"
             android:padding="8dip"
             android:textSize="20dip"/>

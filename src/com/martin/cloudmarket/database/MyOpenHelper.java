@@ -24,6 +24,9 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 		sql = "create table ordertable(_id integer primary key autoincrement, id char(20), date char(50), address char(200)"
 							  + ", tel char(10), paycondition integer(10), price char(20))";
 		db.execSQL(sql);
+		sql = "create table user(_id integer primary key autoincrement, username char(20), password char(50), address char(200)"
+							  + ", tel char(10))";
+		db.execSQL(sql);
 	}
 
 	//升级数据库时调用

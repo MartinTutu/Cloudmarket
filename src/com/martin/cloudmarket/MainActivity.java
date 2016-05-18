@@ -9,10 +9,14 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
 	private RadioGroup rg = null;
+	private Bundle bundle;
+	public static String username = "游客";
+	public static int flag = 0;
 //	private MyOpenHelper oh;
 //	private String  myDB = "couldmarket.db";
 //	private SQLiteDatabase db;
@@ -44,7 +48,11 @@ public class MainActivity extends Activity {
 						break;
 					case R.id.radio_button4:
 						//显示Mine的Fragment
-						showFragmentMine();
+						if(flag == 0){
+							showFragmentMine();
+						}else if(flag == 1){
+							showFragmentMine(username);
+						}
 						break;					
 					default:
 						break;
@@ -76,7 +84,7 @@ public class MainActivity extends Activity {
     
     private void showFragmentMine(){
     	//1.创建fragment对象
-    	FragmentMine fmine = new FragmentMine();
+    	FragmentMine fmine = new FragmentMine(MainActivity.this);
     	//2.获取fragment管理器
     	FragmentManager fm = getFragmentManager();
     	//3.开启事物
@@ -111,18 +119,65 @@ public class MainActivity extends Activity {
     	ft.replace(R.id.fl, fs);
     	//5.提交
     	ft.commit();
-    }
+    }    
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
+		//Toast.makeText(this, "1234567890-", Toast.LENGTH_SHORT).show();
 		switch(requestCode){
-         case 1:
-         	break;
-         case 2:
-         	break;
-      }
+	         case 1:
+		    	 if(resultCode == 1){
+			        	showFragmentSuperMarket();
+						//Toast.makeText(this, "ssfsdfsdf", Toast.LENGTH_LONG).show();
+		    	 }
+		    	 break;
+	         case 2:
+	        	 if(resultCode == 1){
+	        		 bundle = data.getExtras();
+	        		 username = bundle.getString("username");
+	        		 flag = 1;
+	        		 showFragmentMine(username);		         	 
+	        	 }else if(resultCode == 0){
+	        		 showFragmentMine();
+	        	 }
+	        	 break;
+	         case 3:
+	        	 if(resultCode == 1){
+	        		 String ordernum = data.getStringExtra("ordernum");
+	        		 showFragmentOrder(ordernum);
+	        		 
+	        	 }else if(resultCode == 0){
+	        		 showFragmentOrder();
+	        	 }
+	        	 break;
+	    }
+		//super.onActivityResult(requestCode, resultCode, data);
 	}
-    
+
+	private void showFragmentOrder(String ordernum) {
+		//1.创建fragment对象
+    	FragmentOrder fo = new FragmentOrder(MainActivity.this,ordernum);
+    	//2.获取fragment管理器
+    	FragmentManager fm = getFragmentManager();
+    	//3.开启事物
+    	FragmentTransaction ft = fm.beginTransaction();
+    	//4.显示fragment
+    	ft.replace(R.id.fl, fo);
+    	//5.提交
+    	ft.commit();
+	}
+
+	private void showFragmentMine(String username) {		
+		//1.创建fragment对象
+    	FragmentMine fmine = new FragmentMine(MainActivity.this,username);
+    	//2.获取fragment管理器
+    	FragmentManager fm = getFragmentManager();
+    	//3.开启事物
+    	FragmentTransaction ft = fm.beginTransaction();
+    	//4.显示fragment
+    	ft.replace(R.id.fl, fmine);
+    	//5.提交
+    	ft.commit();
+	}
+
 }

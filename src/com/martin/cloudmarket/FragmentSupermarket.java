@@ -72,7 +72,6 @@ public class FragmentSupermarket extends Fragment {
 		}
 	};
 	
-	
 	public FragmentSupermarket(Activity context) {
 		super();
 		this.context = context;
@@ -85,6 +84,7 @@ public class FragmentSupermarket extends Fragment {
 		v = inflater.inflate(R.layout.fragment_supermarket, null);
 		initAdvertisement();
 		getNewsInfo();
+		
 		return v;
 	}
 
@@ -391,8 +391,8 @@ public class FragmentSupermarket extends Fragment {
 					bundle.putString("ID", shop.getId());
 					bundle.putString("Title", shop.getTitle());
 					intent.putExtras(bundle);
-					startActivityForResult(intent, 1);
-					Toast.makeText(context,"点了"+shop.getId(),Toast.LENGTH_LONG).show();
+					context.startActivityForResult(intent, 1);
+					//Toast.makeText(context,"点了"+shop.getId(),Toast.LENGTH_LONG).show();
 				}
 			});
 			return v;
